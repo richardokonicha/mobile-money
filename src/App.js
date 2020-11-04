@@ -87,9 +87,9 @@ const App = () => {
         email={email} 
         setEmail={setEmail}
         password={password}
-        setPassword={setPasswordError}
+        setPassword={setPassword}
         handleLogin={handleLogin}
-        handleSignup={handleSignUp}
+        handleSignUp ={handleSignUp}
         hasAccount={hasAccount}
         setHasAccount={setHasAccount}
         emailError={emailError}
