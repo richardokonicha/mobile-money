@@ -63,7 +63,7 @@ const App = () => {
     fire.auth().signOut();
   }
 
-  
+
   useEffect(() => {
     const authListener = () => {
       fire.auth().onAuthStateChanged((user) => {
