@@ -32,7 +32,7 @@ const Login = (props) => {
                 type="password" 
                 required 
                 value={password} 
-                onChange={e => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)}
                 />
                 <p className="errorMsg">{passwordError}</p>
                 <div className="btnContainer">
