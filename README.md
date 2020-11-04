@@ -1,3 +1,5 @@
+All notable changes to this project will be documented in the CHANGELOG.md file
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
