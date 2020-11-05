@@ -59,10 +59,9 @@ const App = () => {
     });
   };
 
-  const handleLogout = () => {
+  const handleLogOut = () => {
     fire.auth().signOut();
   }
-
 
   useEffect(() => {
     const authListener = () => {
@@ -81,7 +80,7 @@ const App = () => {
   return (
     <div className="App">
       {user ? (
-    <Hero handleLogout={handleLogout}/>
+    <Hero handleLogOut={handleLogOut}/>
       ) : (
         <Login 
         email={email} 
