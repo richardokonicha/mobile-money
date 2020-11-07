@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import fire from './fire';
-import Login from './components/Login';
+import Auth from './components/Auth';
 // import Hero from './components/Hero';   
 import Dashboard from './components/Dashboard';
 
@@ -99,7 +99,7 @@ const App = () => {
       <Dashboard user={user} handleLogOut={handleLogOut} />
       
       ) : (
-        <Login 
+        <Auth 
         email={email} 
         setEmail={setEmail}
         password={password}
