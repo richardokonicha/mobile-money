@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import fire from './fire';
-import Login from './Login';
-import Hero from './Hero';   
+import Login from './components/Login';
+// import Hero from './components/Hero';   
+import Dashboard from './components/Dashboard';
 
 const App = () => {
+  //initializing state variables
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [user, setUser] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -12,15 +16,18 @@ const App = () => {
   const [hasAccount, setHasAccount] = useState(false);
 
   const clearInputs = () => {
+    // clear login input field
     setEmail('');
     setPassword('');
   }
 
   const clearErrors = () => {
+    // clear errors from html input field
     setEmailError('');
   }
 
   const handleLogin = () => {
+    // logs user in with email and passwords 
     clearErrors();
     fire
     .auth()
@@ -41,6 +48,7 @@ const App = () => {
   };
 
   const handleSignUp = () => {
+    // create new user account with email and password
     clearErrors();
     fire
     .auth()
@@ -60,12 +68,17 @@ const App = () => {
   };
 
   const handleLogOut = () => {
+    // signs current user out when triggered
     fire.auth().signOut();
   }
 
   useEffect(() => {
+    // Listens to the user variable for value changes and rerenders 
+    // the component once a change is detected
+    // this function is created and called inside this block for specific purpose of useEffect
     const authListener = () => {
       fire.auth().onAuthStateChanged((user) => {
+        // checks if user is authenticated and set user
         if(user){
           clearInputs();
           setUser(user);
@@ -79,8 +92,12 @@ const App = () => {
 
   return (
     <div className="App">
+      
       {user ? (
-    <Hero handleLogOut={handleLogOut}/>
+      // An if else statement to check if user is authenticated
+      // renders dashboard if user is auth and renders Login is user isn't auth
+      <Dashboard user={user} handleLogOut={handleLogOut} />
+      
       ) : (
         <Login 
         email={email} 
@@ -93,6 +110,10 @@ const App = () => {
         setHasAccount={setHasAccount}
         emailError={emailError}
         passwordError={passwordError}
+        firstName={firstName}
+        setFirstName={setFirstName}
+        lastName={lastName}
+        setLastName={setLastName}
         />
       )}
     </div>
