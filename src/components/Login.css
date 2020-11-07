@@ -1,0 +1,16 @@
+.formDiv {
+  border: 2px solid red;
+}
+
+.section {
+  /* background-color: rgb(255, 162, 162); */
+}
+.btnContainer {
+  /* border: 2px solid red; */
+}
+.formDiv {
+  border: 2px solid rgb(117, 117, 117);
+  /* background-color: black; */
+  max-width: 40rem;
+  margin: 0 auto;
+}
