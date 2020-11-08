@@ -1,8 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from '@material-ui/styles';
+import { purple } from '@material-ui/core/colors';
 import fire from './fire';
 import Auth from './components/Auth';
 // import Hero from './components/Hero';   
 import Dashboard from './components/Dashboard';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: `#A5396F`,
+    }
+  }
+})
 
 const App = () => {
   //initializing state variables
@@ -96,7 +107,9 @@ const App = () => {
       {user ? (
       // An if else statement to check if user is authenticated
       // renders dashboard if user is auth and renders Login is user isn't auth
-      <Dashboard user={user} handleLogOut={handleLogOut} />
+      <ThemeProvider theme={ theme }>
+        <Dashboard user={user} handleLogOut={handleLogOut} />
+      </ThemeProvider>
       
       ) : (
         <Auth 
