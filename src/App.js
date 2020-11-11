@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from '@material-ui/styles';
-import { purple } from '@material-ui/core/colors';
-import fire from './fire';
+// import { purple } from '@material-ui/core/colors';
+import { auth, db, writeToDb } from './fire';
 import Auth from './components/Auth';
 // import Hero from './components/Hero';   
 import Dashboard from './components/Dashboard';
@@ -21,6 +21,8 @@ const App = () => {
   const [lastName, setLastName] = useState('');
   const [user, setUser] = useState('');
   const [email, setEmail] = useState('');
+  const [femail, setfEmail] = useState('testing');
+
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
@@ -40,8 +42,7 @@ const App = () => {
   const handleLogin = () => {
     // logs user in with email and passwords 
     clearErrors();
-    fire
-    .auth()
+    auth
     .signInWithEmailAndPassword(email, password)
     .catch((err) => {
       // eslint-disable-next-line default-case
@@ -61,9 +62,12 @@ const App = () => {
   const handleSignUp = () => {
     // create new user account with email and password
     clearErrors();
-    fire
-    .auth()
+    auth
     .createUserWithEmailAndPassword(email, password)
+    .then((createdUser) => {
+      writeToDb(createdUser, firstName, lastName);
+    }
+    )
     .catch((err) => {
       // eslint-disable-next-line default-case
       switch(err.code){
@@ -80,15 +84,13 @@ const App = () => {
 
   const handleLogOut = () => {
     // signs current user out when triggered
-    fire.auth().signOut();
+    auth.signOut();
   }
 
   useEffect(() => {
     // Listens to the user variable for value changes and rerenders 
-    // the component once a change is detected
-    // this function is created and called inside this block for specific purpose of useEffect
     const authListener = () => {
-      fire.auth().onAuthStateChanged((user) => {
+      auth.onAuthStateChanged((user) => {
         // checks if user is authenticated and set user
         if(user){
           clearInputs();

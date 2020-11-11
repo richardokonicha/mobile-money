@@ -18,14 +18,13 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems, secondaryListItems, secondaryListItem } from './listItems';
+import { mainListItems } from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import AssignmentIcon from '@material-ui/icons/Assignment';
 
 
 function Copyright() {
@@ -155,10 +154,10 @@ export default function Dashboard(props) {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Dashboard {user.email}
           </Typography>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className>
+          <Typography component="h1" variant="h6" color="inherit" noWrap>
             Account
           </Typography>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className>
+          <Typography component="h1" variant="h6" color="inherit" noWrap>
             Logout
           </Typography>
           <IconButton color="inherit">
