@@ -17,3 +17,7 @@ straightforward as possible.
 - Intial setup with create-react boilerplate.
 - setup firebase authentication and firebase deployment.
 - added actions: can-createUser/can-signIn/can-signOut.
+
+### Added
+
+- material ui components
