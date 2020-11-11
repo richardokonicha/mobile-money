@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from '@material-ui/styles';
 // import { purple } from '@material-ui/core/colors';
-import { auth, db, writeToDb } from './fire';
+import { auth, db, writeToDb, getFromDb } from './fire';
 import Auth from './components/Auth';
 // import Hero from './components/Hero';   
 import Dashboard from './components/Dashboard';
@@ -20,8 +20,8 @@ const App = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [user, setUser] = useState('');
+  const [userProfile, setUserProfile] = useState('');
   const [email, setEmail] = useState('');
-  const [femail, setfEmail] = useState('testing');
 
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -87,6 +87,17 @@ const App = () => {
     auth.signOut();
   }
 
+  const setUserData = (uid) => {
+    // get user profile info from db 
+    db.collection("users")
+    .doc(uid)
+    .get()
+    .then(doc => {
+      const data = doc.data();
+      setUserProfile(data);
+    });
+  };
+
   useEffect(() => {
     // Listens to the user variable for value changes and rerenders 
     const authListener = () => {
@@ -95,6 +106,8 @@ const App = () => {
         if(user){
           clearInputs();
           setUser(user);
+
+          setUserData(user.uid);
         } else { 
           setUser("");
         }
@@ -110,7 +123,11 @@ const App = () => {
       // An if else statement to check if user is authenticated
       // renders dashboard if user is auth and renders Login is user isn't auth
       <ThemeProvider theme={ theme }>
-        <Dashboard user={user} handleLogOut={handleLogOut} />
+        <Dashboard 
+        user={user} 
+        userProfile={userProfile}
+        handleLogOut={handleLogOut} 
+        />
       </ThemeProvider>
       
       ) : (

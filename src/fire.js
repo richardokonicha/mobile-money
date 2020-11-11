@@ -24,9 +24,10 @@ export const writeToDb = (createdUser, firstName, lastName) => {
   });
 };  
 
+
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyD5CdtPsVHQWbLg53DTYatZPtn9V5hbqII",
+  apiKey: "AIzaSyD5CdtPsVHQWbLg53DTYatZPtn9V5hbqII",
     authDomain: "mobile-money-ddb7a.firebaseapp.com",
     databaseURL: "https://mobile-money-ddb7a.firebaseio.com",
     projectId: "mobile-money-ddb7a",
@@ -35,7 +36,8 @@ const firebaseConfig = {
     appId: "1:564905005929:web:b1e083aa8c99776b43a3f8",
     measurementId: "G-QQXQT5NM0T"
   };
-
-const fire = firebase.initializeApp(firebaseConfig);
-export const auth = fire.auth();
-export const db = fire.firestore();
+  
+  const fire = firebase.initializeApp(firebaseConfig);
+  export const auth = fire.auth();
+  export const db = fire.firestore();
+  

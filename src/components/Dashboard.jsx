@@ -125,7 +125,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard(props) {
 
-  const { user, handleLogOut } = props;
+  const { 
+    user, 
+    userProfile,
+    handleLogOut 
+  } = props;
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
@@ -157,9 +161,11 @@ export default function Dashboard(props) {
           <Typography component="h1" variant="h6" color="inherit" noWrap>
             Account
           </Typography>
-          <Typography component="h1" variant="h6" color="inherit" noWrap>
-            Logout
-          </Typography>
+          <IconButton color="inherit">
+            <Typography component="h1" variant="h6" color="inherit" noWrap onClick={handleLogOut}>
+              Logout
+            </Typography>
+          </IconButton>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
@@ -206,7 +212,7 @@ export default function Dashboard(props) {
             {/* Recent Deposits */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                <Deposits />
+                <Deposits amount={userProfile.balance} />
               </Paper>
             </Grid>
             {/* Recent Orders */}
