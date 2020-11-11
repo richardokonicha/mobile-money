@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from '@material-ui/styles';
 // import { purple } from '@material-ui/core/colors';
-import { auth, db, writeToDb, getFromDb } from './fire';
+import { auth, db, writeToDb } from './fire';
 import Auth from './components/Auth';
 // import Hero from './components/Hero';   
 import Dashboard from './components/Dashboard';

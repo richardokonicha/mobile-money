@@ -21,3 +21,4 @@ straightforward as possible.
 ### Added
 
 - material ui components
+- add user profile firestore 

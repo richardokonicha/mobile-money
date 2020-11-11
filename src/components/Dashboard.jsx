@@ -161,8 +161,8 @@ export default function Dashboard(props) {
           <Typography component="h1" variant="h6" color="inherit" noWrap>
             Account
           </Typography>
-          <IconButton color="inherit">
-            <Typography component="h1" variant="h6" color="inherit" noWrap onClick={handleLogOut}>
+          <IconButton color="inherit" onClick={handleLogOut}>
+            <Typography component="h1" variant="h6" color="inherit" noWrap >
               Logout
             </Typography>
           </IconButton>
