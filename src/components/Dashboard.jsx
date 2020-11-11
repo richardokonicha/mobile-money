@@ -18,14 +18,13 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems, secondaryListItems, secondaryListItem } from './listItems';
+import { mainListItems } from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import AssignmentIcon from '@material-ui/icons/Assignment';
 
 
 function Copyright() {
@@ -126,7 +125,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard(props) {
 
-  const { user, handleLogOut } = props;
+  const { 
+    user, 
+    userProfile,
+    handleLogOut 
+  } = props;
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
@@ -155,12 +158,14 @@ export default function Dashboard(props) {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Dashboard {user.email}
           </Typography>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className>
+          <Typography component="h1" variant="h6" color="inherit" noWrap>
             Account
           </Typography>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className>
-            Logout
-          </Typography>
+          <IconButton color="inherit" onClick={handleLogOut}>
+            <Typography component="h1" variant="h6" color="inherit" noWrap >
+              Logout
+            </Typography>
+          </IconButton>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
@@ -207,7 +212,7 @@ export default function Dashboard(props) {
             {/* Recent Deposits */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                <Deposits />
+                <Deposits amount={userProfile.balance} />
               </Paper>
             </Grid>
             {/* Recent Orders */}
