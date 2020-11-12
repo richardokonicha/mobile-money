@@ -5,12 +5,12 @@ import { ThemeProvider } from '@material-ui/styles';
 import { auth, db, writeToDb } from './fire';
 import Auth from './components/Auth';
 // import Hero from './components/Hero';   
-import Dashboard from './components/Dashboard';
+import Dashboard from './components/Dashboard/Dashboard';
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: `#A5396F`,
+      main: `#FFFFFF`,
     }
   }
 })

@@ -19,12 +19,13 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems } from './listItems';
-import Chart from './Chart';
-import Deposits from './Deposits';
-import Orders from './Orders';
+import Chart from '../Dashboard/Chart';
+import Deposits from '../Dashboard/Deposits';
+import Orders from '../Dashboard/Orders';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import TopBar from '../Dashboard/TopBar';
 
 
 function Copyright() {
@@ -109,7 +110,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
   },
   container: {
-    paddingTop: theme.spacing(4),
+    paddingTop: theme.spacing(5),
     paddingBottom: theme.spacing(4),
   },
   paper: {
@@ -144,35 +145,8 @@ export default function Dashboard(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-        <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard {user.email}
-          </Typography>
-          <Typography component="h1" variant="h6" color="inherit" noWrap>
-            Account
-          </Typography>
-          <IconButton color="inherit" onClick={handleLogOut}>
-            <Typography component="h1" variant="h6" color="inherit" noWrap >
-              Logout
-            </Typography>
-          </IconButton>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-        </Toolbar>
-      </AppBar>
+      <TopBar user={user} open={open} userProfile={userProfile} handleDrawerClose={handleDrawerClose} handleDrawerOpen={handleDrawerOpen}></TopBar>
+
       <Drawer
         variant="permanent"
         classes={{
