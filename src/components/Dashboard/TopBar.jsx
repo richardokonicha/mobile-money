@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles, fade } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
@@ -70,9 +70,9 @@ const useStyles = makeStyles((theme) => ({
     search: {
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
-        backgroundColor: fade(theme.palette.common.black, 0.15),
+        backgroundColor: fade(theme.palette.common.black, 0.08),
         '&:hover': {
-          backgroundColor: fade(theme.palette.common.black, 0.25),
+          backgroundColor: fade(theme.palette.common.black, 0.08),
         },
         marginLeft: 0,
         width: '100%',
@@ -108,18 +108,31 @@ const useStyles = makeStyles((theme) => ({
           },
         },
       },
+      sub: {
+          opacity: 0.5,
+          fontFamily: 'Open Sans, sans-serif',
+          color: 'grey',
+      },
 
 }))
 
 export default function TopBar(props) {
+    const [searchValue, setSearchValue] = useState('');
     const classes = useStyles();
     const { 
         user, 
         open, 
         userProfile,
         handleDrawerOpen, 
-        handleLogOut 
+        handleLogOut,
+        handleSearch, 
     } = props;
+
+    // const handleSearch = () => {
+    //     console.log(searchValue);
+    // };
+
+
     return (
         <React.Fragment>
         <AppBar elevation={1} position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
@@ -135,13 +148,14 @@ export default function TopBar(props) {
           </IconButton>
           <Typography component="h1" variant="h4" color="inherit" noWrap className={classes.title}>
             Hello, {userProfile.firstName}
-            <Typography component="h5" variant="subtitle1" color="#CCCCCC">welcome back!</Typography>
+            <Typography className={classes.sub}>welcome back!</Typography>
           </Typography>
-          <IconButton color="inherit" onClick={handleLogOut}>
-          </IconButton>
+         
           <div className={classes.search}>
             <div className={classes.searchIcon}>
-              <SearchIcon />
+                {/* <IconButton color="inherit"> */}
+                    <SearchIcon />
+                {/* </IconButton> */}
             </div>
             <InputBase
               placeholder="Find friends…"
@@ -150,6 +164,8 @@ export default function TopBar(props) {
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
             />
           </div>
           <IconButton color="inherit">
