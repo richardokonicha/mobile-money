@@ -3,6 +3,8 @@ import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Title from './Title';
+import { useSelector, useDispatch } from 'react-redux';
+import { increment, decrement } from '../../redux/actions';
 
 function preventDefault(event) {
   event.preventDefault();
@@ -16,11 +18,16 @@ const useStyles = makeStyles({
 
 export default function Deposits({amount}) {
   const classes = useStyles();
+  const counter = useSelector((state) => { return state.counter});
+  const dispatch = useDispatch();
   return (
     <React.Fragment>
       <Title>Recent Deposits</Title>
-      <Typography component="p" variant="h4">
-        $ {amount}
+      <Typography component="p" variant="h4" >
+  $ {amount}f {counter}
+  <button onClick={() => dispatch(decrement(5))}>
+    add
+  </button>
       </Typography>
       <Typography color="textSecondary" className={classes.depositContext}>
         on 15 March, 2019
