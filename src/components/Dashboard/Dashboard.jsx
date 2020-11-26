@@ -4,20 +4,15 @@ import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import Box from '@material-ui/core/Box';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
-import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems } from './listItems';
 import Chart from '../Dashboard/Chart';
 import Deposits from '../Dashboard/Deposits';
@@ -26,7 +21,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import TopBar from '../Dashboard/TopBar';
-
 
 function Copyright() {
   return (
@@ -55,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: '0 8px',
+    marginBottom: theme.spacing(4),
     ...theme.mixins.toolbar,
   },
   appBar: {
@@ -125,7 +120,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Dashboard(props) {
-
   const { 
     user, 
     userProfile,
@@ -145,8 +139,11 @@ export default function Dashboard(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <TopBar user={user} open={open} userProfile={userProfile} handleDrawerClose={handleDrawerClose} handleDrawerOpen={handleDrawerOpen}></TopBar>
-
+      <TopBar 
+      open={open} 
+      userProfile={userProfile} 
+      handleDrawerClose={handleDrawerClose} 
+      handleDrawerOpen={handleDrawerOpen}/>
       <Drawer
         variant="permanent"
         classes={{
@@ -163,14 +160,11 @@ export default function Dashboard(props) {
         <List>{mainListItems}</List>
         <Divider />
         <List>
-
-        <ListItem button onClick={handleLogOut}>
-        <ListItemIcon>
-          {/* <AssignmentIcon /> */}
-          </ListItemIcon>
-          <ListItemText primary="Sign Out" />
-        </ListItem>
-
+          <ListItem button onClick={handleLogOut}>
+            <ListItemIcon>
+              </ListItemIcon>
+            <ListItemText primary="Sign Out" />
+          </ListItem>
         </List>
       </Drawer>
       <main className={classes.content}>
